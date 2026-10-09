@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone Gym Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">💪</div>
+            <div>
+                <h2>FitZone</h2>
+                <span>GYM MANAGEMENT</span>
+            </div>
+        </div>
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <button class="nav-btn active" data-page="dashboard">
+            🏠 <span>Dashboard</span>
+        </button>
+
+        <button class="nav-btn" data-page="members">
+            👤 <span>Members</span>
+        </button>
+
+        <button class="nav-btn" data-page="trainers">
+            🏋️ <span>Trainers</span>
+        </button>
+
+        <button class="nav-btn" data-page="plans">
+            📋 <span>Plans</span>
+        </button>
+
+        <button class="nav-btn" data-page="memberships">
+            🎟️ <span>Memberships</span>
+        </button>
+
+        <button class="nav-btn" data-page="attendance">
+            🗓️ <span>Attendance</span>
+        </button>
+
+        <button class="nav-btn" data-page="requirements">
+            📑 <span>DB Requirements</span>
+        </button>
+
+        <div class="sidebar-bottom">
+            <div class="online-dot"></div>
+            <div>
+                <strong>System Online</strong>
+                <small>Spring Boot + MySQL</small>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div></div>
+
+            <div class="admin-area">
+                <div class="notification">🔔</div>
+
+                <div class="profile-circle">S</div>
+
+                <div class="admin-info">
+                    <strong>Admin</strong>
+                    <span>Gym Manager</span>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- ================================================= -->
+        <!-- DASHBOARD - ONLY THIS SECTION IS THE NEW DESIGN -->
+        <!-- ================================================= -->
+
+        <section id="dashboard" class="page active">
+
+            <div class="page-heading">
+                <div>
+                    <span class="section-label">OVERVIEW</span>
+                    <h1>Dashboard</h1>
+                    <p>Welcome to FitZone Gym Management System.</p>
+                </div>
+
+                <button class="refresh-btn" onclick="loadCounts()">
+                    🔄 Refresh
+                </button>
+            </div>
+
+
+            <!-- STAT CARDS -->
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+                    <div class="card-icon">👤</div>
+
+                    <div class="card-content">
+                        <span>Total Members</span>
+                        <strong id="memberCount">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">🏋️</div>
+
+                    <div class="card-content">
+                        <span>Total Trainers</span>
+                        <strong id="trainerCount">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📋</div>
+
+                    <div class="card-content">
+                        <span>Total Plans</span>
+                        <strong id="planCount">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="card-icon">🎟️</div>
+
+                    <div class="card-content">
+                        <span>Memberships</span>
+                        <strong id="membershipCount">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SYSTEM INFORMATION -->
+            <div class="dashboard-info">
+
+                <div class="info-header">
+                    <h2>Gym Management System</h2>
+                </div>
+
+                <p>
+                    This application manages members, trainers, plans,
+                    memberships and attendance using
+                    <strong>Spring Boot</strong>,
+                    <strong>MySQL</strong> and
+                    <strong>JavaScript</strong>.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK FEATURES -->
+            <div class="quick-section">
+
+                <h2>System Features</h2>
+
+                <div class="quick-grid">
+
+                    <div class="quick-card">
+                        <div class="quick-icon">👤</div>
+                        <div>
+                            <h3>Member Management</h3>
+                            <p>Add and manage gym members.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-card">
+                        <div class="quick-icon">🏋️</div>
+                        <div>
+                            <h3>Trainer Management</h3>
+                            <p>View trainers and their specializations.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-card">
+                        <div class="quick-icon">🎟️</div>
+                        <div>
+                            <h3>Membership</h3>
+                            <p>Register and manage memberships.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-card">
+                        <div class="quick-icon">🗓️</div>
+                        <div>
+                            <h3>Attendance</h3>
+                            <p>Track attendance and membership details.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEMBERS ================= -->
+
+        <section id="members" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <span class="section-label">GYM USERS</span>
+                    <h1>Members</h1>
+                    <p>Manage gym members.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <h2>Add Member</h2>
+
+                <form id="memberForm" class="form-grid">
+
+                    <input id="memberName"
+                           type="text"
+                           placeholder="Member Name"
+                           required>
+
+                    <input id="memberEmail"
+                           type="email"
+                           placeholder="Email"
+                           required>
+
+                    <input id="memberPhone"
+                           type="text"
+                           placeholder="Phone"
+                           required>
+
+                    <input id="memberAge"
+                           type="number"
+                           placeholder="Age"
+                           required>
+
+                    <select id="memberGender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <button type="submit" class="primary-btn">
+                        Add Member
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>Member List</h2>
+
+                <div id="membersList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRAINERS ================= -->
+
+        <section id="trainers" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <span class="section-label">GYM STAFF</span>
+                    <h1>Trainers</h1>
+                    <p>View gym trainers.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <h2>Trainer List</h2>
+
+                <div id="trainersList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLANS ================= -->
+
+        <section id="plans" class="page">
+
+            <div class="page-heading">
+                <div>
+                    <span class="section-label">MEMBERSHIP OPTIONS</span>
+                    <h1>Plans</h1>
+                    <p>View available gym plans.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <h2>Available Plans</h2>
+
+                <div id="plansList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEMBERSHIPS ================= -->
+
+        <section id="memberships" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">
+                        PROCEDURE + FUNCTION + TRIGGER
+                    </span>
+
+                    <h1>🎟️ Memberships</h1>
+
+                    <p>
+                        Book memberships and demonstrate database features.
+                    </p>
+                </div>
+
+                <button class="refresh-btn" onclick="getMemberships()">
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <!-- REGISTER MEMBERSHIP -->
+
+            <div class="panel">
+
+                <h2>⚙️ Register Membership — STORED PROCEDURE</h2>
+
+                <p class="hint">
+                    Uses: POST /memberships/register
+                </p>
+
+                <form id="membershipForm">
+
+                    <div class="form-grid">
+
+                        <div>
+                            <label>Member</label>
+                            <select id="membershipMember" required></select>
+                        </div>
+
+                        <div>
+                            <label>Trainer</label>
+                            <select id="membershipTrainer" required></select>
+                        </div>
+
+                        <div>
+                            <label>Plan</label>
+                            <select id="membershipPlan" required></select>
+                        </div>
+
+                        <div>
+                            <label>Start Date</label>
+                            <input
+                                    type="date"
+                                    id="membershipStartDate"
+                                    required
+                            >
+                        </div>
+
+                        <div>
+                            <label>Expiry Date</label>
+                            <input
+                                    type="date"
+                                    id="membershipExpiryDate"
+                                    readonly
+                                    required
+                            >
+                        </div>
+
+                        <div>
+                            <label>Status</label>
+                            <input
+                                    type="text"
+                                    id="membershipStatus"
+                                    value="ACTIVE"
+                                    readonly
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="button-row">
+
+                        <button
+                                type="button"
+                                class="dark-btn"
+                                onclick="calculateExpiry()">
+
+                            📅 Calculate Expiry — FUNCTION
+
+                        </button>
+
+
+                        <button
+                                type="submit"
+                                class="primary-btn">
+
+                            🎟️ Register Membership — PROCEDURE
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- TRIGGER -->
+
+            <div class="panel">
+
+                <h2>🔔 Update Membership — TRIGGER</h2>
+
+                <p class="hint">
+                    MySQL trigger automatically changes the status
+                    to ACTIVE or EXPIRED.
+                </p>
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Membership ID</label>
+
+                        <input
+                                type="number"
+                                id="triggerMembershipId"
+                                placeholder="Example: 1">
+                    </div>
+
+
+                    <div>
+                        <label>New Expiry Date</label>
+
+                        <input
+                                type="date"
+                                id="triggerExpiryDate">
+                    </div>
+
+                </div>
+
+
+                <button
+                        class="dark-btn"
+                        onclick="runTrigger()">
+
+                    🔔 Update & Run Trigger
+
+                </button>
+
+            </div>
+
+
+            <!-- MEMBERSHIP LIST -->
+
+            <div class="panel">
+
+                <h2>Membership List</h2>
+
+                <div id="membershipsList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ATTENDANCE ================= -->
+
+        <section id="attendance" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">
+                        JOIN + SUBQUERY
+                    </span>
+
+                    <h1>🗓️ Attendance</h1>
+
+                    <p>
+                        Demonstrate your JOIN and Subquery.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                        class="dark-btn"
+                        onclick="showJoin()">
+
+                    🔗 JOIN
+                    <small>Attendance + Membership</small>
+
+                </button>
+
+
+                <button
+                        class="primary-btn"
+                        onclick="showAboveAverage()">
+
+                    📊 SUBQUERY
+                    <small>Above Average Attendance</small>
+
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>🔗 JOIN Result</h2>
+
+                <p class="hint">
+                    Attendance and membership details combined using JOIN.
+                </p>
+
+                <div id="joinResult"></div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>📊 SUBQUERY Result</h2>
+
+                <p class="hint">
+                    Members whose attendance is above the average.
+                </p>
+
+                <div id="subqueryResult"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DB REQUIREMENTS ================= -->
+
+        <section id="requirements" class="page">
+
+            <div class="page-heading">
+
+                <div>
+                    <span class="section-label">DATABASE</span>
+                    <h1>📑 DB Requirements</h1>
+                    <p>Database concepts implemented in this project.</p>
+                </div>
+
+            </div>
+
+
+            <div class="requirement-grid">
+
+                <div class="requirement-card">
+                    <h2>🔗 JOIN</h2>
+                    <p>
+                        Combines Members, Attendance and Memberships
+                        to display complete attendance information.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <h2>📊 SUBQUERY</h2>
+                    <p>
+                        Finds members whose attendance is greater
+                        than the average attendance.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <h2>⚙️ STORED PROCEDURE</h2>
+                    <p>
+                        Registers a new gym membership using
+                        register_membership().
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <h2>📅 FUNCTION</h2>
+                    <p>
+                        Calculates membership expiry date based
+                        on start date and duration.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <h2>🔔 TRIGGER</h2>
+                    <p>
+                        Automatically changes membership status
+                        to ACTIVE or EXPIRED.
+                    </p>
+                </div>
+
+
+                <div class="requirement-card">
+                    <h2>🌐 REST API</h2>
+                    <p>
+                        Spring Boot REST APIs connect the frontend
+                        with MySQL database.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+        <div id="messageBox"></div>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

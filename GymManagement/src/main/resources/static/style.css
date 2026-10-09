@@ -1,0 +1,630 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6fc;
+    color: #10101a;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ================= APP ================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 312px;
+    min-height: 100vh;
+    background: #15131f;
+    color: white;
+    padding: 34px 18px 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 8px 45px;
+}
+
+.brand-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    background: #704cff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.brand h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.brand span {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #aaa5bb;
+}
+
+.menu-title {
+    color: #8e889f;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.nav-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #c4c0cf;
+    text-align: left;
+    padding: 17px 18px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: 0.2s;
+}
+
+.nav-btn:hover {
+    background: #242130;
+    color: white;
+}
+
+.nav-btn.active {
+    background: #704cff;
+    color: white;
+    box-shadow: 0 12px 30px rgba(112, 76, 255, 0.25);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    background: #211f2c;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-bottom strong {
+    display: block;
+    font-size: 13px;
+}
+
+.sidebar-bottom small {
+    color: #8d8999;
+    font-size: 10px;
+}
+
+.online-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #24d68a;
+}
+
+
+/* ================= MAIN ================= */
+
+.main-content {
+    margin-left: 312px;
+    width: calc(100% - 312px);
+    min-height: 100vh;
+    padding: 0 50px 60px;
+}
+
+.topbar {
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.notification {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.profile-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #704cff;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-info strong {
+    display: block;
+    font-size: 21px;
+}
+
+.admin-info span {
+    color: #8d8999;
+    font-size: 13px;
+}
+
+
+/* ================= PAGES ================= */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* ================= PAGE HEADING ================= */
+
+.page-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 10px 0 35px;
+}
+
+.section-label {
+    display: block;
+    color: #704cff;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.page-heading h1 {
+    font-size: 43px;
+    margin-bottom: 10px;
+}
+
+.page-heading p {
+    color: #858198;
+    font-size: 18px;
+}
+
+
+/* ================================================= */
+/* DASHBOARD */
+/* ================================================= */
+
+#dashboard {
+    padding-top: 10px;
+}
+
+#dashboard .page-heading {
+    margin-bottom: 32px;
+}
+
+#dashboard .page-heading h1 {
+    font-size: 43px;
+}
+
+#dashboard .page-heading p {
+    font-size: 19px;
+}
+
+
+/* DASHBOARD CARDS */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    min-height: 135px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    box-shadow: 0 8px 30px rgba(38, 30, 80, 0.05);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 19px;
+    background: #f0edff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 31px;
+}
+
+.card-content span {
+    display: block;
+    color: #817b91;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.card-content strong {
+    display: block;
+    font-size: 32px;
+}
+
+
+/* DASHBOARD INFO */
+
+.dashboard-info {
+    background: white;
+    border-radius: 22px;
+    padding: 35px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 30px rgba(38, 30, 80, 0.05);
+}
+
+.dashboard-info h2 {
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+.dashboard-info p {
+    color: #777188;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* QUICK FEATURES */
+
+.quick-section {
+    margin-top: 25px;
+}
+
+.quick-section > h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.quick-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 30px rgba(38, 30, 80, 0.05);
+}
+
+.quick-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 15px;
+    background: #f0edff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.quick-card h3 {
+    margin-bottom: 7px;
+}
+
+.quick-card p {
+    color: #898397;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.refresh-btn,
+.primary-btn,
+.dark-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.refresh-btn,
+.primary-btn {
+    background: #704cff;
+}
+
+.dark-btn {
+    background: #272432;
+}
+
+.refresh-btn:hover,
+.primary-btn:hover {
+    background: #5e3de5;
+}
+
+.dark-btn:hover {
+    background: #17151e;
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.button-row small {
+    display: block;
+    margin-top: 4px;
+}
+
+
+/* ================= PANEL ================= */
+
+.panel {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 30px rgba(38, 30, 80, 0.05);
+}
+
+.panel h2 {
+    margin-bottom: 8px;
+}
+
+.hint {
+    color: #858198;
+    margin-bottom: 20px;
+}
+
+
+/* ================= FORMS ================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #dddbe5;
+    border-radius: 10px;
+    background: #fafafd;
+    font-size: 15px;
+    outline: none;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+    border-color: #704cff;
+}
+
+.form-grid label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-grid > .primary-btn {
+    width: fit-content;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.data-table th {
+    background: #f0edff;
+    color: #3c3458;
+    padding: 14px;
+    text-align: left;
+}
+
+.data-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.delete-btn {
+    border: none;
+    background: #ffe9e9;
+    color: #d93636;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+
+/* ================= ATTENDANCE ================= */
+
+.result-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.result-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-table th {
+    background: #704cff;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+.result-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* ================= REQUIREMENTS ================= */
+
+.requirement-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.requirement-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(38, 30, 80, 0.05);
+}
+
+.requirement-card h2 {
+    margin-bottom: 12px;
+}
+
+.requirement-card p {
+    color: #817b91;
+    line-height: 1.6;
+}
+
+
+/* ================= MESSAGE ================= */
+
+#messageBox {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 1000;
+}
+
+.message {
+    background: #22202b;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 80px;
+        padding: 20px 10px;
+    }
+
+    .brand div:last-child,
+    .menu-title,
+    .nav-btn span,
+    .sidebar-bottom div:last-child {
+        display: none;
+    }
+
+    .nav-btn {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .main-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 0 20px 40px;
+    }
+
+    .dashboard-cards,
+    .quick-grid,
+    .form-grid,
+    .requirement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
